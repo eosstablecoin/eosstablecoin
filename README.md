@@ -1,1 +1,1 @@
-# eosstablecoin
+eosstablecoin.com
