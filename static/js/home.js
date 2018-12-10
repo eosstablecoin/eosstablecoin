@@ -74,4 +74,14 @@ $(function(){
         }
         return old.replace(/\"/,"") ;
     }
+    var linkLoad = function(){
+        $.getJSON("/static/js/link.json", function (json) {
+            var html = "";
+            for(var i= 0,l=json.length;i<l;i++){
+                html+='<a href="'+json[i].link+'" target="_blank"><img src="'+json[i].imgsrc+'">';
+            }
+            $(".partner-info").html(html);
+        });
+    }
+    linkLoad();
 })
