@@ -1,25 +1,5 @@
 [
   {
-    "link":"https://www.whaleex.com/",
-    "imgsrc":"./static/img/whaleex@2x.png"
-  },
-  {
-    "link":"https://newdex.io/",
-    "imgsrc":"./static/img/newdex@2x.png"
-  },
-  {
-    "link":"https://findex.pro",
-    "imgsrc":"./static/img/findex@2x.png"
-  },
-  {
-    "link":"https://chaince.com/",
-    "imgsrc":"./static/img/Chaince@2x.png"
-  },
-  {
-    "link":"https://onedexweb.haoduobi.com/",
-    "imgsrc":"./static/img/onedex@2x.png"
-  },
-  {
     "link":"https://betdice.one/",
     "imgsrc":"./static/img/betdice@2x.png"
   },
@@ -38,6 +18,34 @@
   {
     "link":"https://endless.game/",
     "imgsrc":"./static/img/endless@2x.png"
+  },
+  {
+    "link":"https://eosmax.io",
+    "imgsrc":"./static/img/eosmax@2x.png"
+  },
+  {
+    "link":"https://www.whaleex.com/",
+    "imgsrc":"./static/img/whaleex@2x.png"
+  },
+  {
+    "link":"https://newdex.io/",
+    "imgsrc":"./static/img/newdex@2x.png"
+  },
+  {
+    "link":"https://findex.pro",
+    "imgsrc":"./static/img/findex@2x.png"
+  },
+  {
+    "link":"https://onedexweb.haoduobi.com/",
+    "imgsrc":"./static/img/onedex@2x.png"
+  },
+  {
+    "link":"https://btex.org/",
+    "imgsrc":"./static/img/betx@2x.png"
+  },
+  {
+    "link":"https://chaince.com/",
+    "imgsrc":"./static/img/Chaince@2x.png"
   },
   {
     "link":"https://bitpie.com",
@@ -86,6 +94,19 @@
   {
     "link":"https://app.pocketeos.top",
     "imgsrc":"./static/img/pocketeos@2x.png"
+  },
+  {
+    "link":"https://eos.live/",
+    "imgsrc":"./static/img/eoslive@2x.png"
+  },
+  {
+    "link":"https://token.im/",
+    "imgsrc":"./static/img/imtoken@2x.png"
+  },
+  {
+    "link":"https://chain.pro/",
+    "imgsrc":"./static/img/chain@2x.png"
   }
+
 
 ]
