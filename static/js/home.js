@@ -98,8 +98,21 @@ $(function(){
             }
         })
     }
-    //loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats","POST","EUSD",function(flag,data){
-    //    console.log(flag,data);
-    //})
+    var req = [{coin:"EUSD",pair:"usdt"},{coin:"EBTC",pair:"btc"},{coin:"EETH",pair:"eth"}];
+    req.forEach(function(v){
+        console.log(v);
+            loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats", "POST", v.coin , function (flag, data) {
+                if (!flag) {
+                    var value = data[v.coin].supply
+                    value = formatValue(value.replace(v.coin,""));
+
+                    var eosvalue = value +" "+ v.coin;
+                    var total = value+" "+ v.pair.toLocaleUpperCase()
+                    $("."+ v.pair+" .cold").html(total)
+                    $("."+ v.pair+" .total").html(total)
+                    $("."+ v.pair+" .eosvalue").html(eosvalue)
+                }
+            })
+    })
 
 })
