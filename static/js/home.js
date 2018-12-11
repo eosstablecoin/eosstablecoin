@@ -84,4 +84,22 @@ $(function(){
         });
     }
     linkLoad();
+    function loadAjax(url,type,symbol,callback){
+        $.ajax({
+            url:url,
+            type:type,
+            data:JSON.stringify({code:"bitpietokens",symbol:symbol}),
+            dataType:'json',
+            success:function(data){
+                return  callback(null,data)
+            },
+            error:function(err){
+                return callback(true,null)
+            }
+        })
+    }
+    //loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats","POST","EUSD",function(flag,data){
+    //    console.log(flag,data);
+    //})
+
 })
