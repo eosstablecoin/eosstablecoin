@@ -32,6 +32,10 @@
     "imgsrc":"./static/img/newdex@2x.png"
   },
   {
+    "link":"https://chaince.com/",
+    "imgsrc":"./static/img/Chaince@2x.png"
+  },
+  {
     "link":"https://findex.pro",
     "imgsrc":"./static/img/findex@2x.png"
   },
@@ -42,10 +46,6 @@
   {
     "link":"https://btex.org/",
     "imgsrc":"./static/img/betx@2x.png"
-  },
-  {
-    "link":"https://chaince.com/",
-    "imgsrc":"./static/img/Chaince@2x.png"
   },
   {
     "link":"https://bitpie.com",
