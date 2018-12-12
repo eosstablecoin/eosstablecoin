@@ -109,7 +109,7 @@ $(function(){
                     var eosvalue = value +" "+ v.coin;
                     var total = value+" "+ v.pair.toLocaleUpperCase()
                     $("."+ v.pair+" .cold").html(total)
-                    $("."+ v.pair+" .total").html(total)
+                    //$("."+ v.pair+" .total").html(total)
                     $("."+ v.pair+" .eosvalue").html(eosvalue)
                 }
             })
