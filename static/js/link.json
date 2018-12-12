@@ -24,6 +24,10 @@
     "imgsrc":"./static/img/eosmax@2x.png"
   },
   {
+    "link":"https://dbet.one/",
+    "imgsrc":"./static/img/dbet@2x.png"
+  },
+  {
     "link":"https://www.whaleex.com/",
     "imgsrc":"./static/img/whaleex@2x.png"
   },
