@@ -14,7 +14,7 @@
     "expensedes":"To cover the operating costs of the gateway, while avoiding malicious in-and-out transfer, a certain amount of handling fee will be charged upon the gateway swap service. This fee will be charged unidirectionally whilst redeeming the cross-chain assets back to the original assets. The standard is 0.05% of the swapped assets. Meanwhile, the miner/gas fees occurred upon transactions on some blockchain networks will be deducted from the user’s total received amount as the case may be.",
     "expenseinfo":"(To encourage people to experience the EOS stable coins, before March 31, 2019, users who swap their assets to stable coins on EOS through the cross-chain gateway will be exempted from charging fees when they redeem those assets back to the original network at any time.)",
     "support":"Supported blockchain assets: BTC ETH USDT",
-    "infotips":"At this initial period, all cross-chain stable coins are pegged to the existing coins in the gateway cold wallets. As the circulation increases, cold wallets will be upgraded to multi-sig cold wallets along with several hot wallets, and the real-time balance will be calculated and displayed then.",
+    "infotips":"All stable coins in circulation are less than or equal to the balance in reserve addresses. Each issuance on the EOS network has a deposit to reserve address in original blockchain and can be checked on the blockchain. As the circulation increases, reserve wallets will be upgraded to multi-sig cold wallets.",
     "cwa":"Cold Wallet Address",
     "cwb":"Cold Wallet Balance",
     "hwb":"Hot Wallet Balance",
