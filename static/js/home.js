@@ -74,6 +74,12 @@ $(function(){
         }
         return old.replace(/\"/,"") ;
     }
+    function sub(num1, num2) {
+        const num1Digits = (num1.toString().split('.')[1] || '').length;
+        const num2Digits = (num2.toString().split('.')[1] || '').length;
+        const baseNum = Math.pow(10, Math.max(num1Digits, num2Digits));
+        return (num1 * baseNum - num2 * baseNum) / baseNum;
+    }
     var linkLoad = function(){
         $.getJSON("/static/js/link.json", function (json) {
             var html = "";
@@ -105,11 +111,9 @@ $(function(){
                 if (!flag) {
                     var value = data[v.coin].supply
                     value = formatValue(value.replace(v.coin,""));
-
                     var eosvalue = value +" "+ v.coin;
                     var total = value+" "+ v.pair.toLocaleUpperCase()
                     $("."+ v.pair+" .cold").html(total)
-                    //$("."+ v.pair+" .total").html(total)
                     $("."+ v.pair+" .eosvalue").html(eosvalue)
                 }
             })

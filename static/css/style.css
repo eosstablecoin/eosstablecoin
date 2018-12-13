@@ -482,6 +482,9 @@ font-size: 14px;
     padding-bottom: 2px;
     display: inline-block;
 }
+.address2{
+    margin-left:15px ;
+}
 @media (min-width: 320px) and (max-width: 768px) {
     .middle{
         width:80%;
@@ -603,7 +606,7 @@ font-size: 14px;
 }
 
 
-@media (min-width: 320px) and (max-width: 530px) {
+@media (min-width: 320px) and (max-width: 780px) {
  .mobileshow{
      display: block;
      float: right !important;
@@ -613,12 +616,37 @@ font-size: 14px;
      top:0;
      left:15px;
      font-size: 12px;
+     /*line-height: 32px;*/
+     width:280px;
      margin: 0 auto;
      display: none;
+
+ }
+ .mul{
+     top:-38px;
+     right:10px;
+     width:258px;
+     padding: 0 5px;
+     text-align: center;
+     background: #fff;
+     border-radius: 5px;
+     line-height: 24px;
+     height:50px;
+     display: block;
+     word-wrap: break-word;word-break: break-all;overflow: hidden;
+     -webkit-box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.07);
+     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.07);
+ }
+ .address2{
+     margin-left: 0px;
+ }
+ .address1,.address2{
+     display: block;
+     width:100%
  }
 }
 
-@media (min-width: 531px){
+@media (min-width: 781px){
     .mobileshow{
         display: none;
     }
