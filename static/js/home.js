@@ -104,7 +104,7 @@ $(function(){
             }
         })
     }
-    var values = {"EUSD":100000,"EETH":2000};
+    var values = {"EUSD":200000,"EETH":2000};
     var req = [{coin:"EUSD",pair:"USDT"},{coin:"EBTC",pair:"BTC"},{coin:"EETH",pair:"ETH"}];
     req.forEach(function(v){
         console.log(v);
@@ -115,7 +115,6 @@ $(function(){
                     var eosvalue = value +" "+ v.coin;
                     var total = value+" "+ v.pair;
                     //console.log(total);
-
                     if(v.coin == "EUSD" || v.coin == "EETH"){
                         $("."+ v.pair +" .total").html(total);
                         $("."+ v.pair+" .cold").html(values[v.coin]+" "+ v.pair);
