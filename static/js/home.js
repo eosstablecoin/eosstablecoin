@@ -114,10 +114,13 @@ $(function(){
                     value = formatValue(value.replace(v.coin,""));
                     var eosvalue = value +" "+ v.coin;
                     var total = value+" "+ v.pair;
+                    //console.log(total);
+
                     if(v.coin == "EUSD" || v.coin == "EETH"){
                         $("."+ v.pair +" .total").html(total);
-                        $("."+ v.pair+" .cold").html(total);
+                        $("."+ v.pair+" .cold").html(values[v.coin]+" "+ v.pair);
                         var hot = sub(value,parseInt(values[v.coin]));
+                        console.log(hot);
                         $("."+ v.pair+" .hot").html(hot+" "+ v.pair);
                     }else{
                         $("."+ v.pair +" .cold").html(total);
