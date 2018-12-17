@@ -104,7 +104,8 @@ $(function(){
             }
         })
     }
-    var req = [{coin:"EUSD",pair:"usdt"},{coin:"EBTC",pair:"btc"},{coin:"EETH",pair:"eth"}];
+    var values = {"EUSD":100000,"EETH":2000};
+    var req = [{coin:"EUSD",pair:"USDT"},{coin:"EBTC",pair:"BTC"},{coin:"EETH",pair:"ETH"}];
     req.forEach(function(v){
         console.log(v);
             loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats", "POST", v.coin , function (flag, data) {
@@ -112,8 +113,15 @@ $(function(){
                     var value = data[v.coin].supply
                     value = formatValue(value.replace(v.coin,""));
                     var eosvalue = value +" "+ v.coin;
-                    var total = value+" "+ v.pair.toLocaleUpperCase()
-                    $("."+ v.pair+" .cold").html(total)
+                    var total = value+" "+ v.pair;
+                    if(v.coin == "EUSD" || v.coin == "EETH"){
+                        $("."+ v.pair +" .total").html(total);
+                        $("."+ v.pair+" .cold").html(total);
+                        var hot = sub(value,parseInt(values[v.coin]));
+                        $("."+ v.pair+" .hot").html(hot+" "+ v.pair);
+                    }else{
+                        $("."+ v.pair +" .cold").html(total);
+                    }
                     $("."+ v.pair+" .eosvalue").html(eosvalue)
                 }
             })

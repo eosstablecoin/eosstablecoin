@@ -16,6 +16,7 @@
     "support":"Supported blockchain assets: BTC ETH USDT",
     "infotips":"All stable coins in circulation are less than or equal to the balance in reserve addresses. Each issuance on the EOS network has a deposit to reserve address in original blockchain and can be checked on the blockchain. As the circulation increases, reserve wallets will be upgraded to multi-sig cold wallets.",
     "cwa":"Cold Wallet Address",
+    "hwa":"Hot Wallet Address",
     "cwb":"Cold Wallet Balance",
     "hwb":"Hot Wallet Balance",
     "tb":"Total Balance",
