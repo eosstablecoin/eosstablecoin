@@ -104,7 +104,7 @@ $(function(){
             }
         })
     }
-    var values = {"EUSD":200000,"EETH":2000};
+    var values = {"EUSD":100000,"EETH":2000};
     var req = [{coin:"EUSD",pair:"USDT"},{coin:"EBTC",pair:"BTC"},{coin:"EETH",pair:"ETH"}];
     req.forEach(function(v){
         console.log(v);
