@@ -104,7 +104,7 @@ $(function(){
             }
         })
     }
-    var values = {"EUSD":170000,"EETH":2000};
+    var values = {"EUSD":160000,"EETH":3640};
     var req = [{coin:"EUSD",pair:"USDT"},{coin:"EBTC",pair:"BTC"},{coin:"EETH",pair:"ETH"}];
     req.forEach(function(v){
             loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats", "POST", v.coin , function (flag, data) {
