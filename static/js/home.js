@@ -104,10 +104,9 @@ $(function(){
             }
         })
     }
-    var values = {"EUSD":100000,"EETH":2000};
+    var values = {"EUSD":170000,"EETH":2000};
     var req = [{coin:"EUSD",pair:"USDT"},{coin:"EBTC",pair:"BTC"},{coin:"EETH",pair:"ETH"}];
     req.forEach(function(v){
-        console.log(v);
             loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats", "POST", v.coin , function (flag, data) {
                 if (!flag) {
                     var value = data[v.coin].supply
@@ -119,7 +118,6 @@ $(function(){
                         $("."+ v.pair +" .total").html(total);
                         $("."+ v.pair+" .cold").html(values[v.coin]+" "+ v.pair);
                         var hot = sub(value,parseInt(values[v.coin]));
-                        console.log(hot);
                         $("."+ v.pair+" .hot").html(hot+" "+ v.pair);
                     }else{
                         $("."+ v.pair +" .cold").html(total);
