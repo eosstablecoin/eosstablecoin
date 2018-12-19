@@ -52,6 +52,10 @@
     "imgsrc":"./static/img/betx@2x.png"
   },
   {
+    "link":"https://dexeos.io/",
+    "imgsrc":"./static/img/dexeos@2x.png"
+  },
+  {
     "link":"https://bitpie.com",
     "imgsrc":"./static/img/bitpie@2x.png"
   },
