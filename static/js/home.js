@@ -54,6 +54,12 @@ $(function(){
     $(".tips").mouseout(function(){
         $(this).prev()[0].style.display = "none"
     })
+    $(".valuetips").mouseover(function(){
+        $(this).next()[0].style.display = "block"
+    })
+    $(".valuetips").mouseout(function(){
+        $(this).next()[0].style.display = "none"
+    })
     var formatValue = function(text) {
         var old = new  String(text);
         var newstr = old;
@@ -121,28 +127,32 @@ $(function(){
 
 
 
+            req.forEach(function(v){
+                loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats", "POST",{code:"bitpietokens",symbol:v.coin}, function (flag, data) {
+                    if (!flag) {
+                        var value = data[v.coin].supply
+                        value = formatValue(value.replace(v.coin,""));
+                        console.log(result[v.coin])
+                        var eosvalue = sub(value,result[v.coin]) +" "+ v.coin;
+                        var total = value+" "+ v.pair;
+                        //console.log(total);
+                        if(v.coin == "EUSD" || v.coin == "EETH"){
+                            $("."+ v.pair +" .total").html(total);
+                            $("."+ v.pair+" .cold").html(values[v.coin]+" "+ v.pair);
+                            var hot = sub(value,parseInt(values[v.coin]));
+                            $("."+ v.pair+" .hot").html(hot+" "+ v.pair);
+                        }else{
+                            $("."+ v.pair +" .cold").html(total);
+                        }
+                        $("."+ v.pair+" .eosvalue").html(eosvalue)
+                    }
+                })
+            })
+
+
+
         }
     })
-    req.forEach(function(v){
-            loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats", "POST",{code:"bitpietokens",symbol:v.coin}, function (flag, data) {
-                if (!flag) {
-                    var value = data[v.coin].supply
-                    value = formatValue(value.replace(v.coin,""));
-                    console.log(result[v.coin])
-                    var eosvalue = sub(value,result[v.coin]) +" "+ v.coin;
-                    var total = value+" "+ v.pair;
-                    //console.log(total);
-                    if(v.coin == "EUSD" || v.coin == "EETH"){
-                        $("."+ v.pair +" .total").html(total);
-                        $("."+ v.pair+" .cold").html(values[v.coin]+" "+ v.pair);
-                        var hot = sub(value,parseInt(values[v.coin]));
-                        $("."+ v.pair+" .hot").html(hot+" "+ v.pair);
-                    }else{
-                        $("."+ v.pair +" .cold").html(total);
-                    }
-                    $("."+ v.pair+" .eosvalue").html(eosvalue)
-                }
-            })
-    })
+
 
 })

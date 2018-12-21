@@ -334,6 +334,24 @@ font-size: 14px;
     -webkit-box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.07);
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.07);
 }
+.evalue-info{
+    display: none;
+    position: absolute;
+    text-align: left;
+    top:0px;
+    left:150px;
+    font-size: 12px;
+    font-weight: 300;
+    z-index: 300;
+    padding: 14px;
+    border-radius: 5px;
+    width:250px;
+    line-height:2;
+    height:auto;
+    background: #fff;
+    -webkit-box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.07);
+}
 /*.tip-info{*/
     /*position: absolute;*/
     /*top:15px;*/
@@ -359,7 +377,11 @@ font-size: 14px;
     position: relative;
 }
 .audit-list span{
-    float:left;
+    /*float:left;*/
+}
+.evalue{
+    width:auto;
+    position: relative;
 }
 .audit-list small{
     float: right;
@@ -382,6 +404,21 @@ font-size: 14px;
     cursor: pointer;
     content: "";
 }
+.valuetips:before{
+    position: relative;
+    top:1px;
+    left:5px;
+    background: url(../img/selected.png) no-repeat;
+    background-size: 100% 100%;
+    display: inline-block;
+    cursor: pointer;
+    content: "";
+    width: 14px;
+    height:14px;
+
+}
+
+
 .fund{
     padding-top: 75px;
     padding-bottom: 25px;
@@ -485,6 +522,12 @@ font-size: 14px;
 .address2{
     margin-left:15px ;
 }
+
+@media (min-width: 320px) and (max-width: 330px) {
+  .audit-list li{
+      font-size: 12px;
+  }
+}
 @media (min-width: 320px) and (max-width: 768px) {
     .middle{
         width:80%;
@@ -505,6 +548,10 @@ font-size: 14px;
     }
     .info-tips{
         width:220px;
+    }
+    .evalue-info{
+        top:40px;
+        left:0px;
     }
     .banner {
         background-color: #fdfdff;

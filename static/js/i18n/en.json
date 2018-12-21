@@ -15,6 +15,7 @@
     "expenseinfo":"(To encourage people to experience the EOS stable coins, before March 31, 2019, users who swap their assets to stable coins on EOS through the cross-chain gateway will be exempted from charging fees when they redeem those assets back to the original network at any time.)",
     "support":"Supported blockchain assets: BTC ETH USDT",
     "infotips":"All stable coins in circulation are less than or equal to the balance in reserve addresses. Each issuance on the EOS network has a deposit to reserve address in original blockchain and can be checked on the blockchain. As the circulation increases, reserve wallets will be upgraded to multi-sig cold wallets.",
+    "evaluetips":"The amount in circulation is calculated by subtracting the number to be redeemed in gateway address from the number of contracts issued.",
     "cwa":"Cold Wallet Address",
     "hwa":"Hot Wallet Address",
     "cwb":"Cold Wallet Balance",
