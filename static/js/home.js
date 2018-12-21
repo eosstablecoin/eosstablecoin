@@ -137,7 +137,7 @@ $(function(){
                         var total = value+" "+ v.pair;
                         //console.log(total);
                         if(v.coin == "EUSD" || v.coin == "EETH"){
-                            $("."+ v.pair +" .total").html(total);
+                            //$("."+ v.pair +" .total").html(total);
                             $("."+ v.pair+" .cold").html(values[v.coin]+" "+ v.pair);
                             var hot = sub(value,parseInt(values[v.coin]));
                             $("."+ v.pair+" .hot").html(hot+" "+ v.pair);
