@@ -94,7 +94,7 @@ $(function(){
         $.ajax({
             url:url,
             type:type,
-            data:JSON.stringify({code:"bitpietokens",symbol:symbol}),
+            data:JSON.stringify(symbol),
             dataType:'json',
             success:function(data){
                 return  callback(null,data)
@@ -106,16 +106,34 @@ $(function(){
     }
     var values = {"EUSD":160000,"EETH":3640};
     var req = [{coin:"EUSD",pair:"USDT"},{coin:"EBTC",pair:"BTC"},{coin:"EETH",pair:"ETH"}];
+    var result = {};
+    loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_balance","POST",{code:"bitpietokens",account:"bitpiestable"},function(flag,data){
+        if(!flag){
+           data.forEach(function(i){
+               if(i.indexOf("EBTC") > -1){
+                   result["EBTC"] = parseFloat(i.replace(/EBTC/g,""));
+               }else if(i.indexOf("EETH") > -1) {
+                   result["EETH"] = parseFloat(i.replace(/EETH/g,""));
+               }else if(i.indexOf("EUSD") > -1){
+                   result["EUSD"] = parseFloat(i.replace(/EUSD/g,""));
+               }
+           })
+
+
+
+        }
+    })
     req.forEach(function(v){
-            loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats", "POST", v.coin , function (flag, data) {
+            loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats", "POST",{code:"bitpietokens",symbol:v.coin}, function (flag, data) {
                 if (!flag) {
                     var value = data[v.coin].supply
                     value = formatValue(value.replace(v.coin,""));
-                    var eosvalue = value +" "+ v.coin;
+                    console.log(result[v.coin])
+                    var eosvalue = sub(value,result[v.coin]) +" "+ v.coin;
                     var total = value+" "+ v.pair;
                     //console.log(total);
                     if(v.coin == "EUSD" || v.coin == "EETH"){
-                        //$("."+ v.pair +" .total").html(total);
+                        $("."+ v.pair +" .total").html(total);
                         $("."+ v.pair+" .cold").html(values[v.coin]+" "+ v.pair);
                         var hot = sub(value,parseInt(values[v.coin]));
                         $("."+ v.pair+" .hot").html(hot+" "+ v.pair);
