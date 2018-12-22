@@ -100,7 +100,7 @@ $(function(){
         $.ajax({
             url:url,
             type:type,
-            data:JSON.stringify(symbol),
+            data:url === 'https://api.omniwallet.org/v2/address/addr/' ? symbol :JSON.stringify(symbol),
             dataType:'json',
             success:function(data){
                 return  callback(null,data)
@@ -113,46 +113,139 @@ $(function(){
     var values = {"EUSD":160000,"EETH":3640};
     var req = [{coin:"EUSD",pair:"USDT"},{coin:"EBTC",pair:"BTC"},{coin:"EETH",pair:"ETH"}];
     var result = {};
-    loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_balance","POST",{code:"bitpietokens",account:"bitpiestable"},function(flag,data){
-        if(!flag){
-           data.forEach(function(i){
-               if(i.indexOf("EBTC") > -1){
-                   result["EBTC"] = parseFloat(i.replace(/EBTC/g,""));
-               }else if(i.indexOf("EETH") > -1) {
-                   result["EETH"] = parseFloat(i.replace(/EETH/g,""));
-               }else if(i.indexOf("EUSD") > -1){
-                   result["EUSD"] = parseFloat(i.replace(/EUSD/g,""));
-               }
-           })
+    loadAjax("https://blockchain.info/q/addressbalance/1YSscuNjW4hDDCPgvP8q9JfZmNEDBrEWu","GET",{},function(flag,data){
+        var coldvalue = "loading..."
+        if(!flag) {
+            var cold = new Big(data).div(new Big(1e8));
+            coldvalue = cold + " " + "BTC";
+        }
+        $(".BTC .cold").html(coldvalue);
 
 
+    })
 
-            req.forEach(function(v){
-                loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats", "POST",{code:"bitpietokens",symbol:v.coin}, function (flag, data) {
+    function eth() {
+        loadAjax("https://api.etherscan.io/api?module=account&action=balance&address=0x5c9f3fff6ee846a83080f373f8cea1451bb4a3d9&tag=latest&apikey=Q1HBAEYM1AVJX39W7SBGYZE1QBCA7CZD2A", "GET", {}, function (flag, data) {
+
+            var hot = 0;
+            if (!flag) {
+                hot = new Big(new Big(data.result).div(new Big(1e18)).toFixed(8))
+                loadAjax("https://api.etherscan.io/api?module=account&action=balance&address=0xf64edd94558ca8b3a0e3b362e20bb13ff52ea513&tag=latest&apikey=Q1HBAEYM1AVJX39W7SBGYZE1QBCA7CZD2A", "GET", {}, function (flag, data) {
+                    var cold = 0;
+                    var total = 0;
                     if (!flag) {
-                        var value = data[v.coin].supply
-                        value = formatValue(value.replace(v.coin,""));
-                        console.log(result[v.coin])
-                        var eosvalue = sub(value,result[v.coin]) +" "+ v.coin;
-                        var total = value+" "+ v.pair;
-                        //console.log(total);
-                        if(v.coin == "EUSD" || v.coin == "EETH"){
-                            //$("."+ v.pair +" .total").html(total);
-                            $("."+ v.pair+" .cold").html(values[v.coin]+" "+ v.pair);
-                            var hot = sub(value,parseInt(values[v.coin]));
-                            $("."+ v.pair+" .hot").html(hot+" "+ v.pair);
-                        }else{
-                            $("."+ v.pair +" .cold").html(total);
+                        cold = new Big(new Big(data.result).div(new Big(1e18)).toFixed(8));
+
+                        if (hot != 0 && cold != 0) {
+                            total = new Big(new Big(hot).add(new Big(cold)).toFixed(8));
+
                         }
-                        $("."+ v.pair+" .eosvalue").html(eosvalue)
+
+
+                    }
+                    if (total == 0) {
+                        total = "loading..."
+                    } else {
+                        total = total + " " + "ETH";
+                    }
+                    if (cold == 0) {
+                        cold = "loading..."
+                    } else {
+                        cold = cold + " " + "ETH";
+                    }
+                    if (hot == 0) {
+                        hot = "loading...";
+                    } else {
+                        hot = hot + " " + "ETH";
+                    }
+                    $(".ETH .hot").html(hot);
+                    $(".ETH .total").html(total);
+                    $(".ETH .cold").html(cold);
+                })
+                usdt();
+            }
+
+            $(".ETH .hot").html(hot);
+        })
+    }
+    function  usdt() {
+        loadAjax("https://api.omniwallet.org/v2/address/addr/", "POST", "addr=1DR5XnVdym8VD5eWLJrApdfpPKs8fgQNo9&addr=15SZafVE21z1vL6qRmwK6aZiLnDCNfVkH3", function (flag, data) {
+            if (!flag) {
+                var hot = data["1DR5XnVdym8VD5eWLJrApdfpPKs8fgQNo9"]["balance"][0];
+                var cold = data["15SZafVE21z1vL6qRmwK6aZiLnDCNfVkH3"]["balance"][0];
+                var hotvalue = 0, coldvalue = 0, totalvalue = 0;
+                if (hot.value) {
+                    hotvalue = new Big(hot.value).div(new Big(1e8));
+                }
+                if (cold.value) {
+                    coldvalue = new Big(cold.value).div(new Big(1e8));
+                }
+                if (hotvalue != 0 && coldvalue != 0) {
+                    totalvalue = new Big(hotvalue).add(new Big(coldvalue));
+                }
+                totalvalue = totalvalue + " " + "USDT";
+                hotvalue = hotvalue + " " + "USDT";
+                coldvalue = coldvalue + " " + "USDT";
+                $(".USDT .hot").html(hotvalue);
+                $(".USDT .cold").html(coldvalue);
+                $(".USDT .total").html(totalvalue);
+                eos();
+
+
+            } else {
+                $(".USDT .hot").html("loading...");
+                $(".USDT .cold").html("loading...");
+                $(".USDT .total").html("loading...");
+            }
+        })
+    }
+
+    function eos() {
+        loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_balance", "POST", {
+            code: "bitpietokens",
+            account: "bitpiestable"
+        }, function (flag, data) {
+            if (!flag) {
+                data.forEach(function (i) {
+                    if (i.indexOf("EBTC") > -1) {
+                        result["EBTC"] = parseFloat(i.replace(/EBTC/g, ""));
+                    } else if (i.indexOf("EETH") > -1) {
+                        result["EETH"] = parseFloat(i.replace(/EETH/g, ""));
+                    } else if (i.indexOf("EUSD") > -1) {
+                        result["EUSD"] = parseFloat(i.replace(/EUSD/g, ""));
                     }
                 })
-            })
+
+                req.forEach(function (v) {
+                    loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_stats", "POST", {
+                        code: "bitpietokens",
+                        symbol: v.coin
+                    }, function (flag, data) {
+                        if (!flag) {
+                            var value = data[v.coin].supply
+                            value = formatValue(value.replace(v.coin, ""));
+                            console.log(result[v.coin])
+                            var eosvalue = sub(value, result[v.coin]) + " " + v.coin;
+                            //var total = value+" "+ v.pair;
+                            //console.log(total);
+                            // if(v.coin == "EUSD" || v.coin == "EETH"){
+                            //$("."+ v.pair +" .total").html(total);
+                            //$("."+ v.pair+" .cold").html(values[v.coin]+" "+ v.pair);
+                           // var hot = sub(value, parseInt(values[v.coin]));
+                            //$("."+ v.pair+" .hot").html(hot+" "+ v.pair);
+                            //}else{
+                            // $("."+ v.pair +" .cold").html(total);
+                            //}
+                            $("." + v.pair + " .eosvalue").html(eosvalue)
+                        }
+                    })
+                })
 
 
-
-        }
-    })
+            }
+        })
+    }
+    eth();
 
 
 })
