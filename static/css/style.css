@@ -523,7 +523,7 @@ font-size: 14px;
     margin-left:15px ;
 }
 
-@media (min-width: 320px) and (max-width: 330px) {
+@media (min-width: 320px) and (max-width: 343px) {
   .audit-list li{
       font-size: 12px;
   }
