@@ -118,6 +118,10 @@
   {
     "link":"http://www.lianjinshu.com/",
     "imgsrc":"./static/img/lianjinshu@2x.png"
+  },
+  {
+    "link":"https://www.huobiwallet.com/",
+    "imgsrc":"./static/img/huobiwallet@2x.png"
   }
 
 
