@@ -130,11 +130,11 @@ $(function(){
             var hot = 0;
             if (!flag) {
                 hot = new Big(new Big(data.result).div(new Big(1e18)).toFixed(8))
-                loadAjax("https://api.etherscan.io/api?module=account&action=balance&address=0xf64edd94558ca8b3a0e3b362e20bb13ff52ea513&tag=latest&apikey=Q1HBAEYM1AVJX39W7SBGYZE1QBCA7CZD2A", "GET", {}, function (flag, data) {
+                loadAjax("https://api.etherscan.io/api?module=account&action=balancemulti&address=0xf64edd94558ca8b3a0e3b362e20bb13ff52ea513,0x7cdcb09dbe6fd3f87b419d8c094b0b607faeed5f&tag=latest&apikey=Q1HBAEYM1AVJX39W7SBGYZE1QBCA7CZD2A", "GET", {}, function (flag, data) {
                     var cold = 0;
                     var total = 0;
                     if (!flag) {
-                        cold = new Big(new Big(data.result).div(new Big(1e18)).toFixed(8));
+                        cold = new Big(new Big(new Big(data.result[0]['balance']).add(new Big(data.result[1]['balance']))).div(new Big(1e18)).toFixed(8));
 
                         if (hot != 0 && cold != 0) {
                             total = new Big(new Big(hot).add(new Big(cold)).toFixed(8));
