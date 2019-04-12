@@ -169,9 +169,9 @@ $(function(){
         })
     }
     function  usdt() {
-        loadAjax("https://api.omniwallet.org/v2/address/addr/", "POST", "addr=1DR5XnVdym8VD5eWLJrApdfpPKs8fgQNo9&addr=15SZafVE21z1vL6qRmwK6aZiLnDCNfVkH3", function (flag, data) {
+        loadAjax("https://api.omniwallet.org/v2/address/addr/", "POST", "addr=15SZafVE21z1vL6qRmwK6aZiLnDCNfVkH3", function (flag, data) {
             if (!flag) {
-                var hot = data["1DR5XnVdym8VD5eWLJrApdfpPKs8fgQNo9"]["balance"][0];
+                var hot = {value:24578152308431};
                 var cold = data["15SZafVE21z1vL6qRmwK6aZiLnDCNfVkH3"]["balance"][0];
                 var hotvalue = 0, coldvalue = 0, totalvalue = 0;
                 if (hot.value) {
@@ -224,7 +224,6 @@ $(function(){
                         if (!flag) {
                             var value = data[v.coin].supply
                             value = formatValue(value.replace(v.coin, ""));
-                            console.log(result[v.coin])
                             var eosvalue = sub(value, result[v.coin]) + " " + v.coin;
                             //var total = value+" "+ v.pair;
                             //console.log(total);
@@ -237,6 +236,7 @@ $(function(){
                             // $("."+ v.pair +" .cold").html(total);
                             //}
                             $("." + v.pair + " .eosvalue").html(eosvalue)
+                            $("." + v.pair + " .not_issued").html(result[v.coin] + " " + v.coin)
                         }
                     })
                 })

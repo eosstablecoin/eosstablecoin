@@ -22,6 +22,7 @@
     "hwb":"热钱包余额",
     "tb":"冷热钱包总量",
     "ic":"流通量",
+    "authorized_not_issued":"预授权但未流通量",
     "displayaddress":"显示地址",
     "supwalleteos":"以下项目支持兑换或使用 EOS 稳定币",
     "mail":"商务合作请联系 biz@eosstablecoin.com",

@@ -20,6 +20,7 @@
     "hwa":"Hot Wallet Address",
     "cwb":"Cold Wallet Balance",
     "hwb":"Hot Wallet Balance",
+    "authorized_not_issued":"Authorized but not issued",
     "tb":"Total Balance",
     "ic":"in Circulation",
     "displayaddress":"Display Address ",
