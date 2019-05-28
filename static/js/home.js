@@ -199,7 +199,29 @@ $(function(){
             }
         })
     }
-
+    function getColdBalance(coin,supply_balance,callback) {
+        if(coin != "EUSD"){
+            callback(supply_balance)
+        }else{
+            loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_balance", "POST", {
+                code: "bitpietokens",
+                account: "bitpieexcold"
+            }, function (flag, data) {
+                if(flag){
+                    callback(supply_balance);
+                }else{
+                    var balances ={}
+                    data.forEach(function (i) {
+                        if (i.indexOf("EUSD") > -1) {
+                            balances["EUSD"] = parseFloat(i.replace(/EUSD/g, ""));
+                        }
+                    })
+                    supply_balance = sub(supply_balance, balances[coin])
+                    callback(supply_balance)
+                }
+            });
+        }
+    }
     function eos() {
         loadAjax("https://api.eoslaomao.com/v1/chain/get_currency_balance", "POST", {
             code: "bitpietokens",
@@ -224,7 +246,8 @@ $(function(){
                         if (!flag) {
                             var value = data[v.coin].supply
                             value = formatValue(value.replace(v.coin, ""));
-                            var eosvalue = sub(value, result[v.coin]) + " " + v.coin;
+                            getColdBalance(v.coin,value,function (cold_balance) {
+                            var eosvalue = sub(cold_balance, result[v.coin]) + " " + v.coin;
                             //var total = value+" "+ v.pair;
                             //console.log(total);
                             // if(v.coin == "EUSD" || v.coin == "EETH"){
@@ -237,6 +260,7 @@ $(function(){
                             //}
                             $("." + v.pair + " .eosvalue").html(eosvalue)
                             $("." + v.pair + " .not_issued").html(result[v.coin] + " " + v.coin)
+                            })
                         }
                     })
                 })
