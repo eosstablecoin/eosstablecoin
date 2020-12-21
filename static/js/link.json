@@ -1,33 +1,5 @@
 [
   {
-    "link":"https://betdice.one/",
-    "imgsrc":"./static/img/betdice@2x.png"
-  },
-  {
-    "link":"https://eosjacks.com/",
-    "imgsrc":"./static/img/eosjacks@2x.png"
-  },
-  {
-    "link":"https://eospoker.win/",
-    "imgsrc":"./static/img/eospoker@2x.png"
-  },
-  {
-    "link":"https://big.game/",
-    "imgsrc":"./static/img/biggame@2x.png"
-  },
-  {
-    "link":"https://endless.game/",
-    "imgsrc":"./static/img/endless@2x.png"
-  },
-  {
-    "link":"https://eosmax.io",
-    "imgsrc":"./static/img/eosmax@2x.png"
-  },
-  {
-    "link":"https://dbet.one/",
-    "imgsrc":"./static/img/dbet@2x.png"
-  },
-  {
     "link":"https://www.whaleex.com/",
     "imgsrc":"./static/img/whaleex@2x.png"
   },
